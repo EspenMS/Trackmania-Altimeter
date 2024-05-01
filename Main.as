@@ -8,7 +8,7 @@ void Main()
 
 void RenderMenu()
 {
-    if(UI::MenuItem("\\$fa0" + Icons::ArrowCircleOUp + " \\$zAltimeter", "", PluginSettings::ShowAltimeter))
+    if(UI::MenuItem("\\$fff" + Icons::Clock + " \\$zAltimeter", "", PluginSettings::ShowAltimeter))
         PluginSettings::ShowAltimeter = !PluginSettings::ShowAltimeter;
 }
 
