@@ -16,7 +16,7 @@ namespace PluginSettings
         Basic
     }
 
-    [Setting name="Theme" category="General"]
+    [Setting hidden]
     Themes Theme = Themes::Basic;
 
     enum Units {
