@@ -1,9 +1,9 @@
-class BasicMeter : Meter
+class Altimiter : Meter
 {
     float startAngle = -90.0f;
     float angleTotal = 360.0f;
 
-    BasicMeter()
+    Altimiter()
     {
         super();
     }

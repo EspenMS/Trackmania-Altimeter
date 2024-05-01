@@ -17,6 +17,13 @@ void Render()
   g_cockpit.Render();
 }
 
+void OnSettingsChanged()
+{
+    g_cockpit.UpdateMeterTheme();
+    g_cockpit.UpdateUnit();
+}
+
+
 void RenderInterface()
 {
     if (PluginSettings::LocatorMode) {
