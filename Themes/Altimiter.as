@@ -1,6 +1,6 @@
 class Altimiter : Meter
 {
-    float startAngle = -90.0f;
+    float startAngle = 0.0f;
     float angleTotal = 360.0f;
 
     Altimiter()
@@ -24,50 +24,26 @@ class Altimiter : Meter
         }
     }
 
-    void RenderAltitude() override
+    void RenderImagePointer(string imageUrl, float scaleModifier) override
     {
-        nvg::BeginPath();
-        nvg::FontSize(m_size.x * 0.2f);
-        // remove negative sign
-        int altitude = Text::ParseInt(Text::Format("%.0f", m_altitude));
-        vec2 margin = vec2(m_size.x * 0.07f, 60 + (m_size.y * 0.1f) - 250);
+        auto image = Images::CachedFromURL(imageUrl);
+        if (image.m_texture !is null){
+            vec2 imageSize = image.m_texture.GetSize() * BasicMeterSettings::BasicMeterBackgroundScale;
+            vec2 realImageSize = image.m_texture.GetSize();
+            vec2 imageCenterPos = vec2(imageSize.x / 2.0f, imageSize.y / 2.0f);
 
-        nvg::FillColor(vec4(1.0f, 1.0f, 1.0f, 1.0f));
-        nvg::Text(m_center.x+margin.x, m_center.y+margin.y, Text::Format("%04d", altitude));
+            nvg::Translate(m_center);
 
-        nvg::ClosePath();
-    }
-
-    void RenderMiddle() override
-    {
-        nvg::BeginPath();
-        nvg::Circle(m_center, .02f * m_size.x);
-        nvg::FillColor(vec4(.8f, .8f, .8f, 1.0f));
-        nvg::Fill();
-        nvg::ClosePath();
-    }
-
-    void RenderPointer(float scaleModifyer, bool showPointer, vec4 color, float width, float length) override
-    {
-        if (showPointer) {
             nvg::BeginPath();
-            nvg::StrokeWidth(m_size.x * width);
-            float startBase = 8;
-            float xs = m_center.x + Math::Cos(Utils::DegToRad(startAngle + (angleTotal * (m_altitude * scaleModifyer))));
-            float ys = m_center.y + Math::Sin(Utils::DegToRad(startAngle + (angleTotal * (m_altitude * scaleModifyer))));
-            float xe = m_center.x + (m_size.x*length) * Math::Cos(Utils::DegToRad(startAngle + (angleTotal * (m_altitude * scaleModifyer))));
-            float ye = m_center.y + (m_size.x*length) * Math::Sin(Utils::DegToRad(startAngle + (angleTotal * (m_altitude * scaleModifyer))));
-            nvg::MoveTo(vec2(xs, ys));
-            nvg::LineTo(vec2(xe, ye));
-
-            nvg::StrokeColor(color);
-
-            nvg::Stroke();
+            nvg::Rotate(Utils::DegToRad(angleTotal * m_altitude * scaleModifier));
+            nvg::FillPaint(nvg::TexturePattern(vec2(0,0) - imageCenterPos, imageSize, .0f, image.m_texture, BasicMeterSettings::BasicMeterBackgroundAlpha));
+            nvg::Fill();
             nvg::ClosePath();
+
+            nvg::Rotate(Utils::DegToRad(0 - angleTotal * m_altitude * scaleModifier));
+            nvg::Translate(0-m_center);
         }
     }
-
-
 
     void RenderSettingsTab() override
     {
@@ -84,17 +60,6 @@ class Altimiter : Meter
                 BasicMeterSettings::BasicMeterBackgroundAlpha = UI::SliderFloat("Alpha", BasicMeterSettings::BasicMeterBackgroundAlpha,0,1);
                 BasicMeterSettings::BasicMeterBackgroundScale = UI::SliderFloat("Scale", BasicMeterSettings::BasicMeterBackgroundScale,0.1f,0.5f);
            }
-
-            UI::EndChild();
-            UI::EndTabItem();
-        }
-        if (UI::BeginTabItem("Pointers")) {
-            UI::BeginChild("Pointer Settings");
-            BasicMeterSettings::BasicTensPointerColor = UI::InputColor4("RPM Color", BasicMeterSettings::BasicTensPointerColor);
-
-            BasicMeterSettings::BasicTensPointer = UI::Checkbox("Pointer", BasicMeterSettings::BasicTensPointer);
-            if (BasicMeterSettings::BasicTensPointer)
-                BasicMeterSettings::BasicTensPointerWidth = UI::SliderFloat("Pointer width", BasicMeterSettings::BasicTensPointerWidth,0,0.1);
 
             UI::EndChild();
             UI::EndTabItem();

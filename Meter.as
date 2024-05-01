@@ -23,22 +23,15 @@ class Meter
     void Render()
     {
         RenderBackground();
-        RenderAltitude();
-
-        RenderPointer(0.0001, true, vec4(.8f, .8f, .85f, 1.0f), 0.01, .4);
-        RenderPointer(0.001, true, vec4(.8f, .8f, .85f, 1.0f), 0.02, .3);
-        RenderPointer(0.01, true, vec4(.8f, .8f, .85f, 1.0f), 0.03, .2);
-
-        RenderMiddle();
+        
+        RenderImagePointer("file:///C:/Users/napps/OpenplanetNext/Plugins/Altimeter/Res/ThousandsPointer.png", .0001f);
+        RenderImagePointer("file:///C:/Users/napps/OpenplanetNext/Plugins/Altimeter/Res/HundredsPointer.png", .001f);
+        RenderImagePointer("file:///C:/Users/napps/OpenplanetNext/Plugins/Altimeter/Res/TensPointer.png", .01f);
     }
 
     void RenderBackground(){}
 
-    void RenderMiddle(){}
-
-    void RenderAltitude(){}
-
-    void RenderPointer(float scaleModifyer, bool showPointer, vec4 color, float width, float length){}
+    void RenderImagePointer(string imageUrl, float scaleModifier){}
 
     void RenderSettingsTab() {
         UI::Text("This theme does not have any settings.");
