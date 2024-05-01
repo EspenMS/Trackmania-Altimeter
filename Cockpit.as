@@ -1,7 +1,7 @@
 class Cockpit
 {
     Meter@ m_meter;
-    float m_unit;
+    float m_unitConversionFactor;
 
     Cockpit()
     {
@@ -27,13 +27,13 @@ class Cockpit
         switch(PluginSettings::Unit)
         {
             case PluginSettings::Units::Meters:
-                m_unit = 1.0f;
+                m_unitConversionFactor = 1.0f;
                 break;
             case PluginSettings::Units::Feet:
-                m_unit = 3.28084f;
+                m_unitConversionFactor = 3.28084f;
                 break;
             default:
-                m_unit = 3.28084f;
+                m_unitConversionFactor = 3.28084f;
                 break;
         }
     }
@@ -60,6 +60,6 @@ class Cockpit
         m_meter.m_pos = PluginSettings::Position;
         m_meter.m_size = PluginSettings::Size;
 
-        m_meter.InternalRender(visState, m_unit);
+        m_meter.InternalRender(visState, m_unitConversionFactor);
     }
 }
