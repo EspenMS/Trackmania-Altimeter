@@ -1,18 +1,18 @@
-namespace BasicGaugeSettings
+namespace BasicMeterSettings
 {
 
     // Background
     [Setting hidden]
-    bool BasicGaugeBackgroundVisible = true;
+    bool BasicMeterBackgroundVisible = true;
 
     [Setting hidden]
-    string BasicGaugeBackgroundURL = "file:///C:/Users/napps/Downloads/Altimeter.png";
+    string BasicMeterBackgroundURL = "file:///C:/Users/napps/Downloads/Altimeter.png";
 
     [Setting hidden]
-    float BasicGaugeBackgroundScale = 0.325f;
+    float BasicMeterBackgroundScale = 0.325f;
 
     [Setting hidden]
-    float BasicGaugeBackgroundAlpha = 1.0f;
+    float BasicMeterBackgroundAlpha = 1.0f;
 
     // Pointers
     // Pointer visibility
@@ -46,10 +46,10 @@ namespace BasicGaugeSettings
     float BasicThousandsPointerWidth = 0.011f;
 
     void ResetAllToDefault() {
-        BasicGaugeBackgroundVisible = true;
-        BasicGaugeBackgroundURL = "file:///C:/Users/napps/Downloads/Altimeter.png";
-        BasicGaugeBackgroundScale = 0.325f;
-        BasicGaugeBackgroundAlpha = 1.0f;
+        BasicMeterBackgroundVisible = true;
+        BasicMeterBackgroundURL = "file:///C:/Users/napps/Downloads/Altimeter.png";
+        BasicMeterBackgroundScale = 0.325f;
+        BasicMeterBackgroundAlpha = 1.0f;
 
         // Pointers
         BasicTensPointerColor = vec4(1.0f, 1.0f, 1.0f, 1.0f);

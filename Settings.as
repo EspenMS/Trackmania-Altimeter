@@ -28,6 +28,6 @@ namespace PluginSettings
     [SettingsTab name="Theme Settings"]
     void RenderThemeSettingsTab()
     {
-        g_cockpit.m_gauge.RenderSettingsTab();
+        g_cockpit.m_meter.RenderSettingsTab();
     }
 }

@@ -1,4 +1,4 @@
-class Gauge
+class Meter
 {
     vec2 m_pos;
     vec2 m_size;

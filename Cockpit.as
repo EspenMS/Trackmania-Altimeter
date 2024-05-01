@@ -1,21 +1,21 @@
 class Cockpit
 {
-    Gauge@ m_gauge;
+    Meter@ m_meter;
 
     Cockpit()
     {
-        UpdateGaugeTheme();
+        UpdateMeterTheme();
     }
 
-    void UpdateGaugeTheme()
+    void UpdateMeterTheme()
     {
         switch(PluginSettings::Theme)
         {
             case PluginSettings::Themes::Basic:
-                @m_gauge = BasicGauge();
+                @m_meter = BasicMeter();
                 break;
             default:
-                @m_gauge = Gauge();
+                @m_meter = Meter();
                 break;
         }
     }
@@ -39,9 +39,9 @@ class Cockpit
         auto visState = VehicleState::ViewingPlayerState();
         if (visState is null) return;
 
-        m_gauge.m_pos = PluginSettings::Position;
-        m_gauge.m_size = PluginSettings::Size;
+        m_meter.m_pos = PluginSettings::Position;
+        m_meter.m_size = PluginSettings::Size;
 
-        m_gauge.InternalRender(visState);
+        m_meter.InternalRender(visState);
     }
 }

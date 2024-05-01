@@ -1,23 +1,23 @@
-class BasicGauge : Gauge
+class BasicMeter : Meter
 {
     float startAngle = -90.0f;
     float angleTotal = 360.0f;
 
-    BasicGauge()
+    BasicMeter()
     {
         super();
     }
 
     void RenderBackground() override
     {
-        if (BasicGaugeSettings::BasicGaugeBackgroundVisible) {
-            auto image = Images::CachedFromURL(BasicGaugeSettings::BasicGaugeBackgroundURL);
+        if (BasicMeterSettings::BasicMeterBackgroundVisible) {
+            auto image = Images::CachedFromURL(BasicMeterSettings::BasicMeterBackgroundURL);
             if (image.m_texture !is null){
                 nvg::BeginPath();
-                vec2 imageSize = image.m_texture.GetSize() * BasicGaugeSettings::BasicGaugeBackgroundScale;
+                vec2 imageSize = image.m_texture.GetSize() * BasicMeterSettings::BasicMeterBackgroundScale;
                 vec2 imageCenterPos = vec2(imageSize.x / 2.0f, imageSize.y / 2.0f);
                 nvg::Rect(m_center - imageCenterPos, imageSize);
-                nvg::FillPaint(nvg::TexturePattern(m_center - imageCenterPos, imageSize, 0, image.m_texture, BasicGaugeSettings::BasicGaugeBackgroundAlpha));
+                nvg::FillPaint(nvg::TexturePattern(m_center - imageCenterPos, imageSize, 0, image.m_texture, BasicMeterSettings::BasicMeterBackgroundAlpha));
                 nvg::Fill();
                 nvg::ClosePath();
             }
@@ -64,12 +64,6 @@ class BasicGauge : Gauge
 
             nvg::Stroke();
             nvg::ClosePath();
-
-            // nvg::BeginPath();
-            // nvg::Circle(vec2(xe, ye), .02f * m_size.x);
-            // nvg::FillColor(vec4(.0f, .8f, .8f, 1.0f));
-            // nvg::Fill();
-            // nvg::ClosePath();
         }
     }
 
@@ -78,17 +72,17 @@ class BasicGauge : Gauge
     void RenderSettingsTab() override
     {
         if (UI::Button("Reset all settings to default")) {
-            BasicGaugeSettings::ResetAllToDefault();
+            BasicMeterSettings::ResetAllToDefault();
         }
-        UI::BeginTabBar("Basic Gauge Settings", UI::TabBarFlags::FittingPolicyResizeDown);
+        UI::BeginTabBar("Basic Meter Settings", UI::TabBarFlags::FittingPolicyResizeDown);
         if (UI::BeginTabItem("Background")) {
             UI::BeginChild("Background Settings");
-            BasicGaugeSettings::BasicGaugeBackgroundVisible = UI::Checkbox("Display background", BasicGaugeSettings::BasicGaugeBackgroundVisible);
+            BasicMeterSettings::BasicMeterBackgroundVisible = UI::Checkbox("Display background", BasicMeterSettings::BasicMeterBackgroundVisible);
 
-            if (BasicGaugeSettings::BasicGaugeBackgroundVisible) {
-                BasicGaugeSettings::BasicGaugeBackgroundURL = UI::InputText("Image URL", BasicGaugeSettings::BasicGaugeBackgroundURL);
-                BasicGaugeSettings::BasicGaugeBackgroundAlpha = UI::SliderFloat("Alpha", BasicGaugeSettings::BasicGaugeBackgroundAlpha,0,1);
-                BasicGaugeSettings::BasicGaugeBackgroundScale = UI::SliderFloat("Scale", BasicGaugeSettings::BasicGaugeBackgroundScale,0.1f,0.5f);
+            if (BasicMeterSettings::BasicMeterBackgroundVisible) {
+                BasicMeterSettings::BasicMeterBackgroundURL = UI::InputText("Image URL", BasicMeterSettings::BasicMeterBackgroundURL);
+                BasicMeterSettings::BasicMeterBackgroundAlpha = UI::SliderFloat("Alpha", BasicMeterSettings::BasicMeterBackgroundAlpha,0,1);
+                BasicMeterSettings::BasicMeterBackgroundScale = UI::SliderFloat("Scale", BasicMeterSettings::BasicMeterBackgroundScale,0.1f,0.5f);
            }
 
             UI::EndChild();
@@ -96,11 +90,11 @@ class BasicGauge : Gauge
         }
         if (UI::BeginTabItem("Pointers")) {
             UI::BeginChild("Pointer Settings");
-            BasicGaugeSettings::BasicTensPointerColor = UI::InputColor4("RPM Color", BasicGaugeSettings::BasicTensPointerColor);
+            BasicMeterSettings::BasicTensPointerColor = UI::InputColor4("RPM Color", BasicMeterSettings::BasicTensPointerColor);
 
-            BasicGaugeSettings::BasicTensPointer = UI::Checkbox("Pointer", BasicGaugeSettings::BasicTensPointer);
-            if (BasicGaugeSettings::BasicTensPointer)
-                BasicGaugeSettings::BasicTensPointerWidth = UI::SliderFloat("Pointer width", BasicGaugeSettings::BasicTensPointerWidth,0,0.1);
+            BasicMeterSettings::BasicTensPointer = UI::Checkbox("Pointer", BasicMeterSettings::BasicTensPointer);
+            if (BasicMeterSettings::BasicTensPointer)
+                BasicMeterSettings::BasicTensPointerWidth = UI::SliderFloat("Pointer width", BasicMeterSettings::BasicTensPointerWidth,0,0.1);
 
             UI::EndChild();
             UI::EndTabItem();
