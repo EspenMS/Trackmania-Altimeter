@@ -22,7 +22,7 @@ class Cockpit
 
     void Render()
     {
-        if (!PluginSettings::ShowSpeedometer) return;
+        if (!PluginSettings::ShowAltimeter) return;
 
         if (PluginSettings::HideWhenNotIFace && !UI::IsGameUIVisible()) return;
 

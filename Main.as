@@ -8,8 +8,8 @@ void Main()
 
 void RenderMenu()
 {
-    if(UI::MenuItem("\\$fa0" + Icons::ArrowCircleOUp + " \\$zAltimeter", "", PluginSettings::ShowSpeedometer))
-        PluginSettings::ShowSpeedometer = !PluginSettings::ShowSpeedometer;
+    if(UI::MenuItem("\\$fa0" + Icons::ArrowCircleOUp + " \\$zAltimeter", "", PluginSettings::ShowAltimeter))
+        PluginSettings::ShowAltimeter = !PluginSettings::ShowAltimeter;
 }
 
 void Render()
