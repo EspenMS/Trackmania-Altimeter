@@ -12,8 +12,6 @@ class Meter
     {
         m_altitude = vis.Position.y * m_conversionFactor;
 
-        print(m_conversionFactor);
-
         vec2 screenSize = vec2(Draw::GetWidth(), Draw::GetHeight());
 		m_resPos = m_pos * (screenSize - m_size);
         m_center = vec2(m_size.x * 0.5f, m_size.y * 0.5f);
