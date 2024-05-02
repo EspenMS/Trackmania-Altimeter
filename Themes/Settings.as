@@ -6,7 +6,7 @@ namespace BasicMeterSettings
     bool BasicMeterBackgroundVisible = true;
 
     [Setting hidden]
-    string BasicMeterBackgroundURL = "file:///C:/Users/napps/OpenplanetNext/Plugins/Altimeter/Res/Altimeter.png";
+    string BasicMeterBackgroundURL = "file:///C:/Users/napps/OpenplanetNext/Plugins/Altimeter/Resources/Altimeter.png";
 
     [Setting hidden]
     float BasicMeterBackgroundScale = 0.325f;
@@ -16,7 +16,7 @@ namespace BasicMeterSettings
 
     void ResetAllToDefault() {
         BasicMeterBackgroundVisible = true;
-        BasicMeterBackgroundURL = "file:///C:/Users/napps/OpenplanetNext/Plugins/Altimeter/Res/Altimeter.png";
+        BasicMeterBackgroundURL = "file:///C:/Users/napps/OpenplanetNext/Plugins/Altimeter/Resources/Altimeter.png";
         BasicMeterBackgroundScale = 0.325f;
         BasicMeterBackgroundAlpha = 1.0f;
     }

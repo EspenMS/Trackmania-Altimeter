@@ -1,7 +1,7 @@
 class Altimiter : Meter
 {
     float startAngle = 0.0f;
-    float angleTotal = 360.0f;
+    float angleTotal = 2.0f * Math::PI;
 
     Altimiter()
     {
@@ -10,39 +10,41 @@ class Altimiter : Meter
 
     void RenderBackground() override
     {
-        if (BasicMeterSettings::BasicMeterBackgroundVisible) {
-            auto image = Images::CachedFromURL(BasicMeterSettings::BasicMeterBackgroundURL);
-            if (image.m_texture !is null){
-                nvg::BeginPath();
-                vec2 imageSize = image.m_texture.GetSize() * BasicMeterSettings::BasicMeterBackgroundScale;
-                vec2 imageCenterPos = vec2(imageSize.x / 2.0f, imageSize.y / 2.0f);
-                nvg::Rect(m_center - imageCenterPos, imageSize);
-                nvg::FillPaint(nvg::TexturePattern(m_center - imageCenterPos, imageSize, 0, image.m_texture, BasicMeterSettings::BasicMeterBackgroundAlpha));
-                nvg::Fill();
-                nvg::ClosePath();
-            }
-        }
+        if (!BasicMeterSettings::BasicMeterBackgroundVisible) return;
+
+        auto image = Images::CachedFromURL(BasicMeterSettings::BasicMeterBackgroundURL);
+        if (image.m_texture is null) return;
+
+        nvg::BeginPath();
+        vec2 imageSize = image.m_texture.GetSize() * BasicMeterSettings::BasicMeterBackgroundScale;
+        vec2 imageCenterPos = vec2(imageSize.x / 2.0f, imageSize.y / 2.0f);
+        nvg::Rect(m_center - imageCenterPos, imageSize);
+        nvg::FillPaint(nvg::TexturePattern(m_center - imageCenterPos, imageSize, 0, image.m_texture, BasicMeterSettings::BasicMeterBackgroundAlpha));
+        nvg::Fill();
+        nvg::ClosePath();
     }
 
     void RenderImagePointer(string imageUrl, float scaleModifier) override
     {
         auto image = Images::CachedFromURL(imageUrl);
-        if (image.m_texture !is null){
-            vec2 imageSize = image.m_texture.GetSize() * BasicMeterSettings::BasicMeterBackgroundScale;
-            vec2 realImageSize = image.m_texture.GetSize();
-            vec2 imageCenterPos = vec2(imageSize.x / 2.0f, imageSize.y / 2.0f);
+        if (image.m_texture is null) return;
 
-            nvg::Translate(m_center);
+        vec2 imageSize = image.m_texture.GetSize() * BasicMeterSettings::BasicMeterBackgroundScale;
+        vec2 realImageSize = image.m_texture.GetSize();
+        vec2 imageCenterPos = vec2(imageSize.x / 2.0f, imageSize.y / 2.0f);
 
-            nvg::BeginPath();
-            nvg::Rotate(Utils::DegToRad(angleTotal * m_altitude * scaleModifier));
-            nvg::FillPaint(nvg::TexturePattern(vec2(0,0) - imageCenterPos, imageSize, .0f, image.m_texture, BasicMeterSettings::BasicMeterBackgroundAlpha));
-            nvg::Fill();
-            nvg::ClosePath();
+        // Remember to revert these after drawing
+        nvg::Translate(m_center);
+        nvg::Rotate(angleTotal * m_altitude * scaleModifier);
 
-            nvg::Rotate(Utils::DegToRad(0 - angleTotal * m_altitude * scaleModifier));
-            nvg::Translate(0-m_center);
-        }
+        nvg::BeginPath();
+        nvg::FillPaint(nvg::TexturePattern(vec2(0,0) - imageCenterPos, imageSize, .0f, image.m_texture, BasicMeterSettings::BasicMeterBackgroundAlpha));
+        nvg::Fill();
+        nvg::ClosePath();
+
+        // Revert rotation and translation to draw next item in the correct place
+        nvg::Rotate(0 - angleTotal * m_altitude * scaleModifier);
+        nvg::Translate(0-m_center);
     }
 
     void RenderSettingsTab() override

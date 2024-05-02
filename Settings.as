@@ -33,7 +33,7 @@ namespace PluginSettings
     [Setting name="Size" category="General"]
     vec2 Size = vec2(350, 350);
 
-    [SettingsTab name="Theme Settings"]
+    [SettingsTab name="Display settings"]
     void RenderThemeSettingsTab()
     {
         g_cockpit.m_meter.RenderSettingsTab();
