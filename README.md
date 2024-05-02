@@ -1,6 +1,3 @@
-# 
-
-
 ## Attributions
 ### Code
 The code used in this plugin is heavialy inspired by the [Speedometer](https://openplanet.dev/plugin/speedometer) plugin made by [Greep](https://openplanet.dev/u/89matt89).
@@ -14,6 +11,6 @@ The work of [Marek Cel](https://commons.wikimedia.org/wiki/User:Cel_84) is licen
 ## Brains
 2D, trigonometry, visual programming, translation and rotation is not my strong suit.
 
-I almost gave up on getting this ready before the start of [Deep dip 2]() when the pointers in the altimeter was rotating all over my screen.
+I almost gave up on getting this ready before the start of [Deep Dip 2](https://matcherino.com/tournaments/111501) when the pointers in the altimeter was rotating all over my screen.
 
-Until I remembered that [David Shiffman]() has a great YouTube channel about [P5.js]() where he teaches aspects of visual programming. And I wasn't dissapointed! Even though he teaches [P5.js]() he explained exactly what I struggled with in this [YouTube video](https://www.youtube.com/watch?v=o9sgjuh-CBM).
+Until I remembered that [Daniel Shiffman](https://github.com/shiffman) has a great YouTube channel where he teaches aspects of visual programming. And I wasn't dissapointed! Even though he teaches [P5.js](https://p5js.org/) he explained exactly what I struggled with in this [YouTube video](https://www.youtube.com/watch?v=o9sgjuh-CBM).
