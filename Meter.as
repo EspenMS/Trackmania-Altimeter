@@ -24,9 +24,9 @@ class Meter
     {
         RenderBackground();
         
-        RenderImagePointer("file:///C:/Users/napps/OpenplanetNext/Plugins/Altimeter/Resources/ThousandsPointer.png", .0001f);
-        RenderImagePointer("file:///C:/Users/napps/OpenplanetNext/Plugins/Altimeter/Resources/HundredsPointer.png", .001f);
-        RenderImagePointer("file:///C:/Users/napps/OpenplanetNext/Plugins/Altimeter/Resources/TensPointer.png", .01f);
+        RenderImagePointer("https://i.imgur.com/ZTNPyb7.png", .0001f);
+        RenderImagePointer("https://i.imgur.com/ES3KSXr.png", .001f);
+        RenderImagePointer("https://i.imgur.com/UJCabwQ.png", .01f);
     }
 
     void RenderBackground(){}

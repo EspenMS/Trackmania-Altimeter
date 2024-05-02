@@ -6,7 +6,7 @@ namespace AltimeterSettings
     bool AltimeterBackgroundVisible = true;
 
     [Setting hidden]
-    string AltimeterBackgroundURL = "file:///C:/Users/napps/OpenplanetNext/Plugins/Altimeter/Resources/Altimeter.png";
+    string AltimeterBackgroundURL = "https://i.imgur.com/f0ly2Pc.png";
 
     [Setting hidden]
     float AltimeterBackgroundScale = 0.325f;
@@ -16,7 +16,7 @@ namespace AltimeterSettings
 
     void ResetAllToDefault() {
         AltimeterBackgroundVisible = true;
-        AltimeterBackgroundURL = "file:///C:/Users/napps/OpenplanetNext/Plugins/Altimeter/Resources/Altimeter.png";
+        AltimeterBackgroundURL = "https://i.imgur.com/f0ly2Pc.png";
         AltimeterBackgroundScale = 0.325f;
         AltimeterBackgroundAlpha = 1.0f;
     }
