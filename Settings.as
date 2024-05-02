@@ -12,13 +12,6 @@ namespace PluginSettings
     [Setting name="Locator Mode (move Altimeter)" category="General"]
     bool LocatorMode = false;
 
-    enum Themes {
-        Basic
-    }
-
-    [Setting hidden]
-    Themes Theme = Themes::Basic;
-
     enum Units {
         Feet,
         Meters

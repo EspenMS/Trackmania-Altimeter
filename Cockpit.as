@@ -1,25 +1,11 @@
 class Cockpit
 {
-    Meter@ m_meter;
+    Meter@ m_meter = Altimiter();
     float m_unitConversionFactor;
 
     Cockpit()
     {
-        UpdateMeterTheme();
         UpdateUnit();
-    }
-
-    void UpdateMeterTheme()
-    {
-        switch(PluginSettings::Theme)
-        {
-            case PluginSettings::Themes::Basic:
-                @m_meter = Altimiter();
-                break;
-            default:
-                @m_meter = Altimiter();
-                break;
-        }
     }
 
     void UpdateUnit()

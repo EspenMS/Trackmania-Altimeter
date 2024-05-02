@@ -19,7 +19,6 @@ void Render()
 
 void OnSettingsChanged()
 {
-    g_cockpit.UpdateMeterTheme();
     g_cockpit.UpdateUnit();
 }
 
